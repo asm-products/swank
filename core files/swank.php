@@ -338,14 +338,25 @@ function getSwankScore($search, $all_info = NULL, $condition = NULL, $barcodeTyp
 			$limit = $_GET['limit'];
 			}
 			if(!isset($_GET['mode']) && is_null($mode)) {
-				// Regular Large HD MODE
-				for($i=0;$i < count($temp['price']); $i++) {
-					if (($total_entries >= 4) && ($i == $limit)) {break;}
-					//return print_r($ebay->getPhotoLite($result[''.$responseType.''][0]['searchResult'][0]['item'][$i]['itemId'][0]));
-					
-						$swank_result .= '{"title":"'.str_replace(chr(34), chr(39), $temp['title'][$i]).'","image":"'. $ebay->getPhotoLite($result[''.$responseType.''][0]['searchResult'][0]['item'][$i]['itemId'][0]).'","sold_date":"'.$temp['end_date'][$i].'","sold_price":"'.number_format($temp['price'][$i], 2).'"},';
-				}
-			} else {	
+                $tmpItems=array();
+                for($i=0;$i < count($temp['price']); $i++) {
+                    if (($total_entries >= 4) && ($i == $limit)) {
+                        break;
+                    }
+                    $tmpItems[]=$result['' . $responseType . ''][0]['searchResult'][0]['item'][$i]['itemId'][0];
+                }
+
+                //make query
+                $tmpItems=$ebay->getPhotosLite($tmpItems);
+
+                // Regular Large HD MODE
+                for($i=0;$i < count($temp['price']); $i++) {
+                    if (($total_entries >= 4) && ($i == $limit)) {break;}
+                    //return print_r($ebay->getPhotoLite($result[''.$responseType.''][0]['searchResult'][0]['item'][$i]['itemId'][0]));
+
+                    $swank_result .= '{"title":"'.str_replace(chr(34), chr(39), $temp['title'][$i]).'","image":"'. $tmpItems[$result['' . $responseType . ''][0]['searchResult'][0]['item'][$i]['itemId'][0]].'","sold_date":"'.$temp['end_date'][$i].'","sold_price":"'.number_format($temp['price'][$i], 2).'"},';
+                }
+			} else {
 				// Low Thumbnail List Mode
 				for($i=0;$i < count($temp['price']); $i++) {
 					if (($total_entries >= 4) && ($i == $limit)) {break;}

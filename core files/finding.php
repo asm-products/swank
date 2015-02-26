@@ -4,10 +4,13 @@ ini_set('zlib.output_compression', 'On');
 ini_set('zlib.output_compression_level', '1');
 require_once ('../../dash/ebay_trading/tradingConstants.php');
 class ebay{
+    //stores already queried keyword suggestions for this session
+    private $keywordSuggestions=array();
+
     //variable instantiation
     private $uri_finding = " ";
     private $appid = "";
-    private $version;
+    private $version="1.0.0";
     private $format = "JSON";
     private $ruName = " ";
     
@@ -18,7 +21,7 @@ class ebay{
     * 
     */
     public function __construct(){
-        $this->version = $this->getCurrentVersion();
+        //$this->version = $this->getCurrentVersion();
     }
     
     /**
@@ -47,11 +50,19 @@ class ebay{
 	if (is_null($barcodeType)) {
 		// keyword search - also searches for exact search '@' mechanic
 		if((substr($search_value, 0, 1)) !== "@") {
-		   	$result2 = $this->getKeywordRecommendations(urlencode(utf8_encode($search_value)));
-			if (!empty($result2['getSearchKeywordsRecommendationResponse'][0]['keywords'][0]))  {$search_value = $result2['getSearchKeywordsRecommendationResponse'][0]['keywords'][0];}
+                $sv=$search_value;
+                if (!empty($this->keywordSuggestions[$sv])) {
+                    $search_value=$this->keywordSuggestions[$sv];
+                } else {
+                    $result2 = $this->getKeywordRecommendations(urlencode(utf8_encode($search_value)));
+                    if (!empty($result2['getSearchKeywordsRecommendationResponse'][0]['keywords'][0])) {
+                        $search_value = $result2['getSearchKeywordsRecommendationResponse'][0]['keywords'][0];
+                    }
+                    $this->keywordSuggestions[$sv] = $search_value;
+                }
 		} else {$search_value = substr($search_value, 1); }
 		
-		$category_id = $this->getCategorySuggestions(urlencode(utf8_encode($search_value)));
+            //$category_id = $this->getCategorySuggestions(urlencode(utf8_encode($search_value)));
 		if (!empty($category_id)) {
 	   		$category_suggestions = "&categoryid=".$category_id;
 	   	} else {
@@ -266,7 +277,7 @@ class ebay{
 	
 		// Verify that the xml response object was created
 		if ($xmlResponse) {
-			if ($xmlResponse->Ack == "Success") {
+            if ($xmlResponse->Ack == "Success" && $xmlResponse->CategoryCount>0) {
 				return $xmlResponse->SuggestedCategoryArray->SuggestedCategory[0]->Category->CategoryID->__toString();
 			}
 		}
@@ -329,6 +340,50 @@ class ebay{
 						'ItemSpecifics' 	=> $xmlResponse->Item->ItemSpecifics
 					));
 				}
+            }
+        }
+    }
+
+
+    /**
+     * Retrieves picture urls for multiple item ids given as array using only one api request.
+     *
+     * @param array $itemids an array of item ids
+     * @return array an associative array containing picture urls for each item id (itemid=>pictureurl)
+     */
+    public function getPhotosLite($itemids){
+        $xmlRequest  = "<?xml version=\"1.0\" encoding=\"utf-8\"?>";
+        $xmlRequest .= "<GetMultipleItemsRequest xmlns=\"urn:ebay:apis:eBLBaseComponents\">";
+        foreach ($itemids as $itemid) {
+            $xmlRequest .= "<ItemID>". $itemid ."</ItemID>";
+        }
+        $xmlRequest .= "</GetMultipleItemsRequest>";
+
+        // define our header array for the Trading API call
+        // notice different headers from shopping API and SITE_ID changes to SITEID
+        $headers = array(
+            'X-EBAY-API-SITEID:'.SITEID,
+            'X-EBAY-API-CALL-NAME:GetMultipleItems',
+            'X-EBAY-API-REQUEST-ENCODING:XML',
+            'X-EBAY-API-COMPATIBILITY-LEVEL:' . API_COMPATIBILITY_LEVEL,
+            'X-EBAY-API-DEV-NAME:' . API_DEV_NAME,
+            'X-EBAY-API-APP-NAME:' . API_APP_NAME,
+            'X-EBAY-API-CERT-NAME:' . API_CERT_NAME,
+            'Content-Type: text/xml;charset=utf-8'
+        );
+
+        $response	= $this->curl("http://open.api.ebay.com/shopping?&version=525", "POST", $headers, $xmlRequest);
+        $xmlResponse 	= simplexml_load_string($response);
+        // Verify that the xml response object was created
+        if ($xmlResponse) {
+            if ($xmlResponse->Ack == "Success") {
+                $result=array();
+
+                foreach($xmlResponse->Item as $item) {
+                    $result[$item->ItemID->__toString()]=$item->PictureURL->__toString();
+                }
+                //return $xmlResponse->Item->__toString();
+                return $result;
 			}
 		}
 	}
