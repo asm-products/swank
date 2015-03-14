@@ -90,6 +90,9 @@ section.video{
 	padding: 40px 0;
 	margin-top: 40px;
 }
+.video iframe{
+	max-width: 100%;
+}
 .call-to-action{
 	position: relative;
 	top: -180px;
