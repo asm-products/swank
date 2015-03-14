@@ -11,6 +11,7 @@ body{
 ul{
 	list-style: none;
 	margin: 0px;
+	padding: 0px;
 }
 
 ul.social-icons li{
@@ -90,6 +91,9 @@ section.video{
 	padding: 40px 0;
 	margin-top: 40px;
 }
+.video iframe{
+	max-width: 100%;
+}
 .call-to-action{
 	position: relative;
 	top: -180px;
@@ -128,4 +132,42 @@ section.contact h1{
 	background: #6d6e70;
 	text-align: center;
 	color: #fff;
+}
+
+
+@media all and (max-width: 800px){
+
+	#mobile-menu .slicknav_menu{
+		background: #c92729;
+	}
+	#mobile-menu .slicknav_btn{
+		background-color:inherit;
+	}
+	.call-to-action{
+		position: relative;
+		top: 0px;
+		left: 0px;
+		overflow: hidden;
+		margin: auto;
+		margin-top: 15px;	
+	}
+	.call-to-action a{
+		display: block;
+		float: left;
+		margin-right: 0px;
+		width: 140px;
+	}
+	.call-to-action a img{
+		width: 100%;
+		height: auto;
+	}
+	.slicknav_nav a{
+		text-align: center;
+		margin-top: 20px;
+	}
+}
+
+
+@media screen and(max-width: 450px){
+	
 }
