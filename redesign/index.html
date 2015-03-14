@@ -10,6 +10,8 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/slicknav.css" rel="stylesheet">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
      <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -17,7 +19,9 @@
     <![endif]-->
   </head>
   <body>
-    <div class="topbar ">
+  <div id="mobile-menu" class="visible-xs"></div>
+    <div class="topbar">
+
       <div class="container">
         <div class="col-lg-3 hidden-xs">
           <a href=""><img src="images/phone.png" width="30"> 678.567.1236</a>
@@ -32,22 +36,22 @@
             <li><a href=""><img src="images/gplus.png"></a></li>
           </ul>
         </div>
-        <div class="visible-xs cta">
-           <a href="https://play.google.com/store/apps/details?id=com.listingproduct.swank"><img src="http://swankhunt.com/wp-content/uploads/2014/11/en_generic_rgb_wo_60.png" alt="Buy Swank on Google Play" width="120" ></a>
-             <a href="http://www.amazon.com/Swank-Reseller-Scouting-Made-Simple/dp/B00PCQGFUG/ref=sr_1_3?ie=UTF8&amp;qid=1415890424&amp;sr=8-3&amp;keywords=swank+app"><img src="http://swankhunt.com/wp-content/uploads/2014/11/amazon-apps-store-us-white.png" width="120" alt="Buy Swank on Amazon"></a>
-        </div>
+   
+        
       </div>
     </div>
      <div class="top container">
         <div class="logo col-lg-3">
           <img src="images/logo.png">
         </div>
-        <ul class="menu  col-lg-7  pull-right">
+
+        <ul class="menu  col-lg-7  pull-right hidden-xs">
           <li><a href="">Features</a></li>
           <li><a href="">Contact</a></li>
           <li><a href="">Login</a></li>
-          <li> <input type="text" class="search" placeholder="Search"> </li>
+          <li class="hidden-xs"> <input type="text" class="search" placeholder="Search"> </li>
         </ul>
+        
      </div>
    
        <section class="hero-unit">
@@ -55,7 +59,8 @@
           <div class="slider hidden-xs">
             <img src="images/banner-1.png">
           </div>
-          <div class="call-to-action hidden-xs">
+
+          <div class="call-to-action">
            
             <a href="https://play.google.com/store/apps/details?id=com.listingproduct.swank"><img src="http://swankhunt.com/wp-content/uploads/2014/11/en_generic_rgb_wo_60.png" alt="Buy Swank on Google Play"></a>
              <a href="http://www.amazon.com/Swank-Reseller-Scouting-Made-Simple/dp/B00PCQGFUG/ref=sr_1_3?ie=UTF8&amp;qid=1415890424&amp;sr=8-3&amp;keywords=swank+app"><img src="http://swankhunt.com/wp-content/uploads/2014/11/amazon-apps-store-us-white.png" width="172" height="60" alt="Buy Swank on Amazon"></a>
@@ -149,10 +154,18 @@
         © 2015 Swank 
       </div>
      </div>
-     <!-- jQuery (necessary for Bootstrap's JavaScript plugins)
+     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/jquery.slicknav.min.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        $('.menu').slicknav({
+          prependTo:'#mobile-menu'
+        });
+      });
+  </script>
     <!-- Include all compiled plugins (below), or include individual files as needed  
-    <script src="js/bootstrap.min.js"></script>
-     -->
+    <script src="js/bootstrap.min.js"></script> -->
+    
   </body>
 </html>

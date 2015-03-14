@@ -133,8 +133,37 @@ section.contact h1{
 	color: #fff;
 }
 
-@media screen and(max-width: 800px){
 
+@media all and (max-width: 800px){
+
+	#mobile-menu .slicknav_menu{
+		background: #c92729;
+	}
+	#mobile-menu .slicknav_btn{
+		background-color:inherit;
+	}
+	.call-to-action{
+		position: relative;
+		top: 0px;
+		left: 0px;
+		overflow: hidden;
+		margin: auto;
+		margin-top: 15px;	
+	}
+	.call-to-action a{
+		display: block;
+		float: left;
+		margin-right: 0px;
+		width: 140px;
+	}
+	.call-to-action a img{
+		width: 100%;
+		height: auto;
+	}
+	.slicknav_nav a{
+		text-align: center;
+		margin-top: 20px;
+	}
 }
 
 
