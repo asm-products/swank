@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Swank</string>
+    <string name="hello_world">Hello world!</string>
+	    
+    <!-- main action menu -->
+    <string name="title_swanksearch">Swank Search</string>
+    <string name="icon_search">&#xf002;</string>
+	<string name="icon_back">&#xf053;</string>
+    
+    <!-- swank and live page -->
+    <string name="title_hint_search">Search</string>
+    <string name="title_large_swank">SWANK</string>
+    <string name="title_large_avgprice">AVG PRICE</string>
+    <string name="title_large_turnover">TURNOVER</string>
+    <string name="value_swank1">0</string>
+    <string name="value_price1">$0.00</string>
+    <string name="value_turnover1">1.0 Day(s)</string>
+    <string name="value_itemname1">Festina Classic Leather Mens Quartz Clock Black White</string>
+    <string name="title_latest_sold">Last\nSold</string>
+    <string name="title_latest_price">Sold\nFor</string>
+    <string name="value_latest_sold">09/09/2014</string>
+    <string name="value_latest_price">$190.00</string>
+    <string name="value_swank2">87</string>
+    <string name="value_price2">$159.32</string>
+    <string name="value_itemname2">Samsung Galaxy S4 Mini Smartphone</string>
+    <string name="title_listitem">LIST ITEM</string>
+    <string name="value_itemstate">WRONG ITEM</string>
+    <string name="title_condition">Condition</string>
+    <string name="title_listingtype">Listing Type</string>
+    <string name="title_normalsearch">&#xf002; <b>Normal</b></string>
+    <string name="title_exactsearch">&#xf00e; <b>Exact</b></string>
+    <string name="title_searchnote">Note : </string>
+    <string name="title_searchnoteac">OSNF-AC</string>
+    <string name="title_searchnoteacalt">OSNF-AC+ALT</string>
+    <string name="title_searchinfo"><![CDATA["?"]]></string>
+    <string name="title_gotohome">&#xf015;</string>
+    <string name="title_no_result">No Search Result</string>
+    <string name="title_prevpage">&#xf053;</string>
+    <string name="title_nextpage">&#xf054;</string>
+
+</resources>
