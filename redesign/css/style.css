@@ -94,11 +94,7 @@ section.video{
 .video iframe{
 	max-width: 100%;
 }
-.call-to-action{
-	position: relative;
-	top: -180px;
-	left: 40px;
-}
+
 .call-to-action a{
 	margin-right: 20px;
 }
@@ -144,17 +140,13 @@ section.contact h1{
 		background-color:inherit;
 	}
 	.call-to-action{
-		position: relative;
-		top: 0px;
-		left: 0px;
 		overflow: hidden;
 		margin: auto;
 		margin-top: 15px;	
 	}
 	.call-to-action a{
-		display: block;
-		float: left;
-		margin-right: 0px;
+		display: inline-block;
+ 		margin-right: 0px;
 		width: 140px;
 	}
 	.call-to-action a img{
@@ -165,9 +157,26 @@ section.contact h1{
 		text-align: center;
 		margin-top: 20px;
 	}
+	.screen{
+		margin: 50px 0 0 0;
+	}
+ 
+	.logo{
+		text-align: center;
+	}
+	.hero-unit{
+		background: #ccc;
+		padding: 35px 0;
+		text-align: center;
+	}
 }
 
 
-@media screen and(max-width: 450px){
-	
+@media screen and(min-width: 1000px){
+		
+	.call-to-action{
+		position: relative;
+		top: -180px;
+		left: 40px;
+	}
 }
