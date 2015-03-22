@@ -24,6 +24,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
     _KeywordText.text = @"Search";
     _KeywordText.textColor = [UIColor lightGrayColor];
     
