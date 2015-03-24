@@ -7,6 +7,7 @@ share:            true
 # or use the hint from http://jekyllrb.com/docs/github-pages/ to keep this the same 
 # whether working locally or remotely. Start Jekyll with: jekyll serve --baseurl ''
 url:        	  "http://blog.swankhunt.com"
+baseurl:        "/swank"
 
 # Owner/author information
 owner:
