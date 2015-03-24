@@ -38,10 +38,13 @@ links:
     icon: home
   - title: Featured Posts
     url: /featured
+    external: true
   - title: Categories
     url: /categories
+    external: true
   - title: About
-    url: "blog.swankhunt.com"
+    url: /about
+    external: true
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/New_York
