@@ -34,7 +34,7 @@ bing_verify:
 links:
   - title: Home
     url: /
-    external: false
+    external: true
     icon: home
   - title: Featured Posts
     url: /featured
