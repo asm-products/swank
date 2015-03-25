@@ -9,14 +9,17 @@ use Swank\Contracts\IPostStorage;
 
 
 class RedditBot {
-    private $requestsLeft=30;
-    private $resetTime=0;
+    private $requestsLeft;
+    private $resetTime;
 
     public function __construct(IPhraseScanner $scanner, IPostGenerator $postGen, IPostStorage $storage, $user, $pass, $swankUser) {
         $this->scanner=$scanner;
         $this->postGenerator=$postGen;
         $this->storage=$storage;
         $this->swankUser=$swankUser;
+
+        $this->resetTime=time()+60;
+        $this->requestsLeft=30;
 
         $this->client=$client=new Client(array(
             'base_url' => 'http://www.reddit.com',
@@ -168,15 +171,22 @@ class RedditBot {
     }
 
     private function sendRequest($request) {
-        if ($this->requestsLeft<=0 && time()<$this->resetTime) {
-            //wait until reddit allows for more requests
-            time_sleep_until($this->resetTime);
+        if ($this->requestsLeft<=0) {
+            if (time()<$this->resetTime) {
+                //wait until reddit allows for more requests
+                time_sleep_until($this->resetTime);
+            }
+            //set to defaults in case X-Ratelimit headers are not set
+            $this->resetTime=time()+60; //now plus 60 seconds
+            $this->requestsLeft=30;
         }
         $response=$this->client->send($request);
 
         if ($response->hasHeader('X-Ratelimit-Remaining')) {
             $this->requestsLeft = $response->getHeader('X-Ratelimit-Remaining');
             $this->resetTime = time() + (int)$response->getHeader('X-Ratelimit-Reset');
+        } else {
+            $this->requestsLeft--;
         }
 
         $json=$response->json();
