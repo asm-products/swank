@@ -1,5 +1,5 @@
 title:            Swank
-description:      "Blogging is fun"
+description:      "The offical Swank blog"
 logo:             logo3.png
 disqus_shortname: Swank
 share:            true
@@ -11,11 +11,11 @@ baseurl:        "/swank"
 
 # Owner/author information
 owner:
-  name:           Your Name
-  avatar:         hmfaysal.jpg
-  email:          you@email.com
+  name:           Swank
+  avatar:         Swank.jpg
+  email:          victorwang12729@gmail.com
   # Use the coder's toolbox at http://coderstoolbox.net/string/#!encoding=xml&action=encode&charset=us_ascii to encode your description into XML string
-  description:    Awesome Dude, Awesome Life
+  description:    The offical Swank blog
   # Social networking links used in footer. Update and remove as you like.
   twitter:        swankhunt
   facebook:       swankhunt
