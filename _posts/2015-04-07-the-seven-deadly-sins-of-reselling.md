@@ -11,7 +11,7 @@ comments: false
  
 **Avarice:**
 
-Keeping most of your valuable finds for yourself rather than selling them as planned. If you have more money going out to these items than coming in for an extended period of time, and you see nothing wrong with it, you may need to reconsider. If you get too overly attached to certain items in your inventory, you can create alot of clutter from mixing your "personal items" with things that you will actually allow to be sold. To people with Hoarder Tendencies, Reselling can be the poison apple of their eyes. 
+Keeping most of your valuable finds for yourself rather than selling them as planned. If you have more money going out to these items than coming in for an extended period of time, and you see nothing wrong with it, you may need to reconsider. If you get too overly attached to certain items in your inventory, you can create alot of clutter from mixing your "personal items" with things that you will actually allow to be sold. Hoarding can quickly become the poision apple in your reselling business.
  
 **Slacking:** 
 Although being a reseller seems as simple as buying low and selling high, and working at your own hours it requires more discipline than a regular 9 to 5 because you are self employed. If you do not show up for work: (sourcing, listing, shipping, buying supplies, customer support), you will eventually have no profits to show for it.
