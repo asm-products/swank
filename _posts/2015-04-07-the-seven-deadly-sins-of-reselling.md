@@ -7,9 +7,10 @@ featured: false
 comments: false
 ---
 
+
 ##The Seven Deadly Sins of Reselling
 
- ![picture](/http://pixabay.com/get/be57a2bf38932ec47a2f/1429192806/chain-690088_1280.jpg?direct)
+![trail-306638_1280.jpg](/_posts/trail-306638_1280.jpg)
  
 ###Avarice:
 
