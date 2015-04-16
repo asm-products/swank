@@ -37,19 +37,22 @@ It's easy to get caught up in the glamour of high profits for seemingly no effor
 
 Instead of looking at others and planning for when all your ducks are lined up perfectly, take an audit of your progress and see what can be done to get to the next level. 
  
-###**Bucket Crab:**
+###Bucket Crab:
+
 When you are to the point that you dispise other resellers and their oportunities and cannot even see the opportunities that you have you can become bitter. You are running from one reseller guru to the next trying to do all of the latest tactics and tricks to get some recognition from other resellers.
 
 It takes months and even years of trust and help to gain a good reputation and the trust of other sellers and buyers. 
 
 You put sugar in their gas tank by pretending to be a buyer but are really a vengeful competitor there to take them down a peg, get their account banned, cost them money, heartache and trouble. 
 
-###**Being a Taker:** 
+###Being a Taker:
+
 When you do the math on a product and you see 30 of them on the shelves and clear it within a blink of an eye, you've had a good day. If you are the type of person who will come back everyday that month and clean every store in your area out of the item each restock day, you may need to rethink your sourcing. (Wholesale instead of retail)
 
 Have you ever found a rare item and instead of charging acceptable market rate on the item, you took advantage of the exclusivity and want to charge 2-3x the recently sold value? There's a thin line between Good Selling and Bad Scalping. Selling water for $27 per bottle in a hotel is a extreme markup and changes how consumers see you. 
 
 Its one thing to take advantage of someone's needs and desires, but its another thing to exploit them and milk them for all that they are worth. 
 
-###**When things get odd, You Get Even**
+###When things get odd, You Get Even
+
 Using your position to make people miserable, abusing the pricing of items to "stick it to buyers" returning a load of items to a store because they upset you, threathening customers and other sellers and generally complaining in a woe is me lifestyle.being a jerk.
