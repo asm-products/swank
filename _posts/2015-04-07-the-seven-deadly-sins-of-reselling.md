@@ -9,28 +9,32 @@ comments: false
 
 ##The Seven Deadly Sins of Reselling
  
-###**Avarice:**
+###Avarice:
+
 Keeping most of your valuable finds for yourself rather than selling them as planned. If you have more money going out to these items than coming in for an extended period of time, and you see nothing wrong with it, you may need to reconsider. If you get too overly attached to certain items in your inventory, you can create alot of clutter from mixing your "personal items" with things that you will actually allow to be sold. Hoarding can quickly become the poision apple in your reselling business.
 
 Have you ever been given some quality advice or information that helps your business but don't want that helpful person to share the same with others? 
 
 Having one hand open and the other hand closed stops you from making valuable friends and relationships that can sometimes lead to deals that you could never imagine.
  
-###**Slacking:** 
+###Slacking:
+
 Although being a reseller seems as simple as buying low and selling high, and working at your own hours it requires more discipline than a regular 9 to 5 because you are self employed. If you do not show up for work: (sourcing, listing, shipping, buying supplies, customer support), _you will eventually have no profits to show for it._
 
 Most Resellers can take care of the basics, but do not know how they are doing in regards to Bookkeeping and time management. This makes the difference between hobby and business. Poor research on items leads to having a surplus of items that sell very slowly, or not at all (resulting in loss).
 
 Customer service is a crucial part of the sales equation and skimping on compassionate care in lieu of automated systems or lending a deaf ear to the voice of your customers will result in failure.
 
-###**Fame Gamer:**
+###Fame Gamer:
+
 Having a good amount of knowledge in one item niche does not equal mastery of all. Don't be the seller that is new and a few months later knows it all. Reselling has a simple component, but there are suddle nuances that can take time to pick up on and use to your advantage. You may get excited with your first few homeruns, but you main goal should be finding a sustainable flow of flippable inventory. 
 
 No matter what level you are in reselling, you will want to make sure not to get ahead of yourself, or dive into large investments without due dilligence. Even if you have alot of initial funds to begin with, you are low on experience, and poor choices will eat away at your flipping fund.
 
 Boasting about your sourcing scores only gives your competitors more information on what you buy, and your potential profits. 
   
-###**Pipe Dreamer:**
+###Pipe Dreamer:
+
  You may be seeing many other resellers with excellent scores, and killer craigslist deals and wish that you lived in SuperSeller's state/region/country. Then you would __actually have a chance to make a decent income reselling___
  
 It's easy to get caught up in the glamour of high profits for seemingly no effort. The downside is that you start fantisizing and you stop focusing on how to improve your business. Your inventory and sales begin to stagnate, and make the other sellers seem to have all of the good opportunities. 
