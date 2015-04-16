@@ -8,6 +8,7 @@ comments: false
 ---
 
 ##The Seven Deadly Sins of Reselling
+
  
 ###Avarice:
 
