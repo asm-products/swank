@@ -10,6 +10,7 @@ comments: false
 ##The Seven Deadly Sins of Reselling
 
  ![picture](/http://pixabay.com/get/be57a2bf38932ec47a2f/1429192806/chain-690088_1280.jpg?direct)
+ 
 ###Avarice:
 
 Keeping most of your valuable finds for yourself rather than selling them as planned. If you have more money going out to these items than coming in for an extended period of time, and you see nothing wrong with it, you may need to reconsider. If you get too overly attached to certain items in your inventory, you can create alot of clutter from mixing your "personal items" with things that you will actually allow to be sold. Hoarding can quickly become the poision apple in your reselling business.
