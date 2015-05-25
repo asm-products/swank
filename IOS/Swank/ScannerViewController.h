@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
+#import "GAITrackedViewController.h"
 //#import "SettingsViewController.h"
-@interface ScannerViewController : UIViewController<UIAlertViewDelegate>
+@import AVFoundation;
+
+@interface ScannerViewController : GAITrackedViewController <UIAlertViewDelegate,AVCaptureMetadataOutputObjectsDelegate>
 @property (strong, nonatomic) NSMutableArray * allowedBarcodeTypes;
 //@property (strong,nonatomic) ViewController *SearchViewController;
 @property (strong,nonatomic) NSString *barcodeString;

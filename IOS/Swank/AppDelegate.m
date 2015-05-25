@@ -8,12 +8,86 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+
 @implementation AppDelegate
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    NSString *urlString = [url absoluteString];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-43102431-3"];
+    
+    // setCampaignParametersFromUrl: parses Google Analytics campaign ("UTM")
+    // parameters from a string url into a Map that can be set on a Tracker.
+    GAIDictionaryBuilder *hitParams = [[GAIDictionaryBuilder alloc] init];
+    
+    // Set campaign data on the map, not the tracker directly because it only
+    // needs to be sent once.
+    [[hitParams setCampaignParametersFromUrl:urlString] build];
+    
+    // Campaign source is the only required campaign field. If previous call
+    // did not set a campaign source, use the hostname as a referrer instead.
+    if(![hitParams valueForKey:kGAICampaignSource] && [url host].length !=0) {
+        // Set campaign data on the map, not the tracker.
+        [hitParams set:@"referrer" forKey:kGAICampaignMedium];
+        [hitParams set:[url host] forKey:kGAICampaignSource];
+    }
+    
+    NSDictionary *hitParamsDict = [hitParams build];
+    
+    // A screen name is required for a screen view.
+    [tracker set:kGAIScreenName value:@"Menu Screen"];
+    
+    // Previous V3 SDK versions.
+    // [tracker send:[[[GAIDictionaryBuilder createAppView] setAll:hitParamsDict] build]];
+    
+    // SDK Version 3.08 and up.
+    [tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:hitParamsDict] build]];
+    
+//    Alternatively, if you have campaign information in a form other than Google Analytics campaign parameters, you may set it on a NSDictionary and send it manually:
+//        
+//        // Assumes at least one tracker has already been initialized.
+//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    
+//    // Note that it's not necessary to set kGAICampaignKeyword for this email campaign.
+//    NSMutableDictionary *campaignData = [NSDictionary alloc dictionaryWithObjectsAndKeys:
+//                                         @"email", kGAICampaignSource,
+//                                         @"email_marketing", kGAICampaignMedium,
+//                                         @"summer_campaign", kGAICampaignName,
+//                                         @"email_variation1", kGAICampaignContent, nil];
+//    
+//    // A screen name is required for a screen view.
+//    [tracker set:kGAIScreenName value:@"screen name"];
+//    
+//    // Note that the campaign data is set on the Dictionary, not the tracker.
+//    // Previous V3 SDK versions.
+//    // [tracker send:[[[GAIDictionaryBuilder createAppView] setAll:campaignData] build]];
+//    
+//    // SDK Version 3.08 and up.
+//    [tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:campaignData] build]];
+    return true;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     [self initializeStoryBoardBasedOnScreenSize];
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-43102431-3"];
     return YES;
 }
 

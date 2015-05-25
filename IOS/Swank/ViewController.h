@@ -11,7 +11,9 @@
 #import "PageViewController.h"
 #import "MBProgressHUD.h"
 #import "ScannerViewController.h"
-@interface ViewController : UIViewController<UITextViewDelegate>
+#import "GAITrackedViewController.h"
+
+@interface ViewController : GAITrackedViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *normalButton;
 //- (IBAction)normalClick:(id)sender;
 @property (weak, nonatomic) IBOutlet UIButton *BsrcodeSearchBtn;

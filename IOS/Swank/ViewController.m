@@ -25,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    self.screenName = @"Menu Screen";
+    
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     _KeywordText.text = @"Search";

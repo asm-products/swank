@@ -36,6 +36,8 @@ NSString *status;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.screenName = @"Result Screen";
+    
     self.responseResults= [[searchResults alloc]init];
     self.SearchResults =[[NSMutableArray alloc ]init];
     [self HttpGetRequestandReceive];

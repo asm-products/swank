@@ -10,7 +10,8 @@
 #import "ContentViewController.h"
 #import "searchResults.h"
 #import "ViewController.h"
-@interface PageViewController : UIViewController<UIScrollViewDelegate>
+#import "GAITrackedViewController.h"
+@interface PageViewController : GAITrackedViewController <UIScrollViewDelegate, UIWebViewDelegate>
 @property (strong,nonatomic) NSArray *pageContent;
 @property (strong,nonatomic) searchResults  *contentResults;
 @property (strong,nonatomic)  NSMutableArray *SearchResults;
