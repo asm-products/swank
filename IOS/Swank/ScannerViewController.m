@@ -113,8 +113,6 @@
         [uivc dismissViewControllerAnimated:NO completion:nil];
         uivc = uivc.presentingViewController;
     }
-    
-    //[self dismissViewControllerAnimated:YES completion:^{ }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -142,7 +140,9 @@
     _videoDevice = [AVCaptureDevice
                     defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (!_videoDevice) {
-//        NSLog(@"No video camera on this device!");
+#ifdef DEBUG
+        NSLog(@"No video camera on this device!");
+#endif
         return;
     }
     // 3
@@ -195,15 +195,11 @@
 
 #pragma mark - Button action functions
 - (IBAction)settingsButtonPressed:(id)sender {
-   // [self performSegueWithIdentifier:@"toSettings" sender:self];
+
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //if ([[segue identifier] isEqualToString:@"toSettings"]) {
-   //     self.settingsVC = (SettingsViewController *)[self.storyboard instantiateViewControllerWithIdentifier: @"SettingsViewController"];
-     //   self.settingsVC = segue.destinationViewController;
-     //   self.settingsVC.delegate = self;
-   // }
+
 }
 
 
@@ -274,7 +270,9 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 -(void) searchWithBarcode
 {
        NSString *Sendurl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",@"http://stoplisting.com/api/?swank&user_id=0&",@"query=",self.barcodeString,@"&condition=",self.Condition,@"&barcodetype=",self.barcodeType];
-//    NSLog(@"%@",Sendurl);
+#ifdef DEBUG
+    NSLog(@"%@",Sendurl);
+#endif
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
     pageView.sendUrl = Sendurl;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pageView];
@@ -282,9 +280,11 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     [self presentViewController:nav animated:YES completion:nil];
 }
 - (void) settingsChanged:(NSMutableArray *)allowedTypes{
-//    for(NSObject * obj in allowedTypes){
-//        NSLog(@"%@",obj);
-//    }
+#ifdef DEBUG
+    for(NSObject * obj in allowedTypes){
+        NSLog(@"%@",obj);
+    }
+#endif
     if(allowedTypes){
         self.allowedBarcodeTypes = [NSMutableArray arrayWithArray:allowedTypes];
     }

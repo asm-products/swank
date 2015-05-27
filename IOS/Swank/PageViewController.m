@@ -117,9 +117,6 @@ NSString *status;
         webView.scrollView.bounces = NO;
         webView.scrollView.scrollEnabled = YES;
         webView.delegate = self;
-     //   webView.scrollView.contentSize =CGSizeMake(self.view.frame.size.width, (siize.height)*self.view.frame.size.width/siize.width+180);
-     //   NSLog(@"%f%f",self.view.frame.size.width,siize.height*self.view.frame.size.width/siize.width);
-     //   NSLog(@"%f%f",siize.width,siize.height);
         webView.scrollView.showsVerticalScrollIndicator = YES;
         [self.UrlScrollView addSubview:webView];
        
@@ -141,8 +138,6 @@ NSString *status;
         [self updatePageControl];
         self.segmentedControl.hidden = NO;
     }
-    
-//    [self scrollWebViewToBottom:webView];
 }
 
 -(void) segmentaction:(UISegmentedControl *)segment
@@ -162,10 +157,6 @@ NSString *status;
         }
         
     }
-    
-   // self.segmentedControl.selectedSegmentIndex = 1;
-//    [[segment.subviews objectAtIndex:1] setTintColor:[UIColor whiteColor]];
-//    [[segment.subviews objectAtIndex:1] setBackgroundColor:[UIColor blackColor]];
 }
 -(void) viewDidLayoutSubviews
 {
@@ -191,15 +182,8 @@ NSString *status;
         [uivc dismissViewControllerAnimated:NO completion:nil];
         uivc = uivc.presentingViewController;
     }
-
-   // [self dismissViewControllerAnimated:YES completion:^{ }];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 -(void) createContentPages
 {
     NSString *htmlfilePath = [[NSBundle mainBundle] pathForResource:@"webPage" ofType:@"html" inDirectory:nil];
@@ -264,11 +248,8 @@ NSString *status;
 
 - (void)showWithGradient
 {
-    
-    //[self removeWithGradient];
     buyHUD = [[MBProgressHUD alloc] initWithView:self.view];
     [self.view addSubview:buyHUD];
-     //buyHUD.dimBackground = YES;
     buyHUD.animationType = 3;
     [buyHUD show:YES];
     
@@ -276,27 +257,37 @@ NSString *status;
 }
 -(void)ResponsePassing:(NSMutableArray*)Data //parsing results of response
 {
-//    NSLog(@"%@",@"Passing Start");
+#ifdef DEBUG
+    NSLog(@"%@",@"Passing Start");
+#endif
     NSArray *results = nil;
     
     
     for (NSMutableDictionary *dic in Data)
     {
         //response status
-       // NSString *status=dic[@"status"];
-        //NSLog(@"%@",status);
+#ifdef DEBUG
+        NSString *status=dic[@"status"];
+        NSLog(@"%@",status);
+#endif
         
         //avg_price
         NSString *avg_price=dic[@"avg_price"];
-//        NSLog(@"%@",avg_price);
+#ifdef DEBUG
+        NSLog(@"%@",avg_price);
+#endif
         
         //swank_score
         NSString *swank_score=dic[@"swank_score"];
-//        NSLog(@"%@",swank_score);
+#ifdef DEBUG
+        NSLog(@"%@",swank_score);
+#endif
         
         //turnover_rate
         NSString *turnover_rate=dic[@"turnover_rate"];
-//        NSLog(@"%@",turnover_rate);
+#ifdef DEBUG
+        NSLog(@"%@",turnover_rate);
+#endif
         
         //results
         results= dic[@"results"];
@@ -306,24 +297,36 @@ NSString *status;
             {
                 //title
                 NSString *title=dic1[@"title"];
-//                NSLog(@"%@",title);
+#ifdef DEBUG
+                NSLog(@"%@",title);
+#endif
                 //imageUrl
                 NSString *imageUrl=[dic1 objectForKey:@"image"];
-//                NSLog(@"%@",imageUrl);
+#ifdef DEBUG
+                NSLog(@"%@",imageUrl);
+#endif
                 //sold_date
                 NSString *sold_date=dic1[@"sold_date"];
-//                NSLog(@"%@",sold_date);
+#ifdef DEBUG
+                NSLog(@"%@",sold_date);
+#endif
                 //sold_price
                 NSString *sold_price=dic1[@"sold_price"];
-//                NSLog(@"%@",sold_price);
+#ifdef DEBUG
+                NSLog(@"%@",sold_price);
+#endif
                 
                 
                 
                 
                 self.responseResults = [[searchResults alloc] initWithData:swank_score Setavg_score:avg_price Setturnover_rate:turnover_rate Settitle:title SetimageUrl:imageUrl Setsold_date:sold_date Setsold_price:sold_price];
-//                NSLog(@"%@",self.responseResults._title);
+#ifdef DEBUG
+                NSLog(@"%@",self.responseResults._title);
+#endif
                 [self.SearchResults addObject:self.responseResults];
-                // NSLog(@"%@",self.SearchResults);
+#ifdef DEBUG
+                 NSLog(@"%@",self.SearchResults);
+#endif
             }
         }
     }
@@ -331,22 +334,21 @@ NSString *status;
 -(void) HttpGetRequestandReceive
 {
     NSURLRequest *request=[NSURLRequest requestWithURL:[NSURL URLWithString:self.sendUrl]];
-    //[request setHTTPMethod:@"GET"];
     [self showWithGradient];
     [NSURLConnection sendAsynchronousRequest:request  queue:[NSOperationQueue mainQueue]
                            completionHandler:^(NSURLResponse *urlresponse, NSData *response, NSError *requestError)
      {
-         //[self removeWithGradient];
          if (requestError==nil)
          {
              
              NSMutableArray *responseParsing = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-//             NSLog(@"%@",responseParsing);
+#ifdef DEBUG
+             NSLog(@"%@",responseParsing);
+#endif
              for (NSMutableDictionary *dic in responseParsing)
              {
                  //response status
                   status=dic[@"status"];
-//                 NSLog(@"%@",status);
              }
              
              if (responseParsing==nil || ![status  isEqualToString:@"200" ] )

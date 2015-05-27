@@ -142,7 +142,9 @@
                                                                                                     (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                                     kCFStringEncodingUTF8 ));
     self.SendUrl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.StopListingUrl,@"query=@",encodedString,@"&condition=",self.Condition,@"&listingtype=",self.ListingType];
-//    NSLog(@"%@",self.SendUrl);
+#ifdef DEBUG
+    NSLog(@"%@",self.SendUrl);
+#endif
     if (self.SearchResults.count>0)
         [ self.SearchResults  removeAllObjects];
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
@@ -170,7 +172,9 @@
                                                                                                     kCFStringEncodingUTF8 ));
     
     self.SendUrl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.StopListingUrl,@"query=",encodedString,@"&condition=",self.Condition,@"&listingtype=",self.ListingType];
-//    NSLog(@"%@",self.SendUrl);
+#ifdef DEBUG
+    NSLog(@"%@",self.SendUrl);
+#endif
     if (self.SearchResults.count>0)
         [ self.SearchResults  removeAllObjects];
     
