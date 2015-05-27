@@ -103,6 +103,10 @@
     // Initialize tracker. Replace with your tracking ID.
     [[GAI sharedInstance] trackerWithTrackingId:@"UA-43102431-3"];
     
+    // Set up IDFA for install tracking
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    tracker.allowIDFACollection = YES;
+    
     // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone4
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     
