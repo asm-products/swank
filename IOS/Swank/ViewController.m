@@ -17,10 +17,12 @@
 @end
 
 @implementation ViewController
+
 -(void) viewWillAppear:(BOOL)animated
 {
-    
+    [super viewWillAppear:animated];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -103,33 +105,6 @@
                                            forState:UIControlStateNormal];
     
     
-    /* NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.ConditionSetting
-     attribute:NSLayoutAttributeHeight
-     relatedBy:NSLayoutRelationEqual
-     toItem:nil
-     attribute:NSLayoutAttributeNotAnAttribute
-     multiplier:1
-     constant:40];
-     [self.ConditionSetting addConstraint:constraint];
-     
-     NSLayoutConstraint *Listingconstraint = [NSLayoutConstraint constraintWithItem:self.ListingTypeSetting
-     attribute:NSLayoutAttributeHeight
-     relatedBy:NSLayoutRelationEqual
-     toItem:nil
-     attribute:NSLayoutAttributeNotAnAttribute
-     multiplier:1
-     constant:40];
-     [self.ListingTypeSetting addConstraint:Listingconstraint];
-     self.ConditionSetting.layer.borderWidth = 3.0;
-     self.ConditionSetting.layer.borderColor = [UIColor colorWithRed:0.0 green:120.0/255.f blue:0.0 alpha:1.0].CGColor;
-     [self.ConditionSetting.layer setCornerRadius:12.0f];
-     self.ConditionSetting.layer.masksToBounds =YES;
-     
-     self.ListingTypeSetting.layer.borderWidth = 3.0;
-     self.ListingTypeSetting.layer.borderColor = [UIColor colorWithRed:0.0 green:120.0/255.f blue:0.0 alpha:1.0].CGColor;
-     [self.ListingTypeSetting.layer setCornerRadius:12.0f];
-     self.ListingTypeSetting.layer.masksToBounds =YES;
-     */
     ///
     //Navigation Bar font
     ///
@@ -137,6 +112,7 @@
     self.navigationController.navigationBar.titleTextAttributes = size;
     [self.navigationItem setTitle:@"Swank Search"];
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:96.0/255.0f green:144.0/255.0f blue:1.0/255.0f alpha:1.0];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTranslucent:NO];
     self.ListingTypeSetting.selectedSegmentIndex=1;
     self.ConditionSetting.selectedSegmentIndex=0;
@@ -148,11 +124,11 @@
     self.SearchResults =[[NSMutableArray alloc ]init];
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)showList:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
 }
+
 - (IBAction)ExtractSearchClick:(id)sender
 {
     if ([self.KeywordText.text  isEqualToString:@""] || [self.KeywordText.text isEqualToString:@"Search"])
@@ -166,7 +142,7 @@
                                                                                                     (CFStringRef)@"!*'();:@&=+$,/?%#[]",
                                                                                                     kCFStringEncodingUTF8 ));
     self.SendUrl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.StopListingUrl,@"query=@",encodedString,@"&condition=",self.Condition,@"&listingtype=",self.ListingType];
-    NSLog(@"%@",self.SendUrl);
+//    NSLog(@"%@",self.SendUrl);
     if (self.SearchResults.count>0)
         [ self.SearchResults  removeAllObjects];
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
@@ -194,7 +170,7 @@
                                                                                                     kCFStringEncodingUTF8 ));
     
     self.SendUrl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.StopListingUrl,@"query=",encodedString,@"&condition=",self.Condition,@"&listingtype=",self.ListingType];
-    NSLog(@"%@",self.SendUrl);
+//    NSLog(@"%@",self.SendUrl);
     if (self.SearchResults.count>0)
         [ self.SearchResults  removeAllObjects];
     
@@ -308,6 +284,14 @@
     {
         _TrashBtn.hidden = NO;
     }
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        _TrashBtn.hidden = YES;
+        return NO;
+    }
+    return YES;
 }
 -(float)getColorValue:(float)colorVal
 {

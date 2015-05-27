@@ -12,7 +12,6 @@
 #import "Barcode.h"
 #import "ViewController.h"
 #import "NSString+FontAwesome.h"
-@import AVFoundation;   // iOS7 only import style
 
 @interface ScannerViewController ()
 
@@ -49,6 +48,8 @@
     [super viewDidLoad];
     
     self.screenName = @"Scanner Screen";
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     [self setupCaptureSession];
     _previewLayer.frame = _previewView.bounds;
@@ -92,6 +93,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     id backfont = [NSString fontAwesomeIconStringForEnum:FAChevronLeft];
     
     
@@ -139,7 +142,7 @@
     _videoDevice = [AVCaptureDevice
                     defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (!_videoDevice) {
-        NSLog(@"No video camera on this device!");
+//        NSLog(@"No video camera on this device!");
         return;
     }
     // 3
@@ -271,7 +274,7 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 -(void) searchWithBarcode
 {
        NSString *Sendurl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",@"http://stoplisting.com/api/?swank&user_id=0&",@"query=",self.barcodeString,@"&condition=",self.Condition,@"&barcodetype=",self.barcodeType];
-    NSLog(@"%@",Sendurl);
+//    NSLog(@"%@",Sendurl);
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
     pageView.sendUrl = Sendurl;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pageView];
@@ -279,9 +282,9 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     [self presentViewController:nav animated:YES completion:nil];
 }
 - (void) settingsChanged:(NSMutableArray *)allowedTypes{
-    for(NSObject * obj in allowedTypes){
-        NSLog(@"%@",obj);
-    }
+//    for(NSObject * obj in allowedTypes){
+//        NSLog(@"%@",obj);
+//    }
     if(allowedTypes){
         self.allowedBarcodeTypes = [NSMutableArray arrayWithArray:allowedTypes];
     }

@@ -63,6 +63,6 @@
     return self.barcodeData;
 }
 - (void) printBarcodeData{
-    NSLog(@"Barcode of type: %@ and data: %@",self.metadataObject.type, self.barcodeData);
+//    NSLog(@"Barcode of type: %@ and data: %@",self.metadataObject.type, self.barcodeData);
 }
 @end

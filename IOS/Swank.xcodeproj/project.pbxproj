@@ -24,19 +24,15 @@
 		84F3B8531A772EF60064794E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B8521A772EF60064794E /* Images.xcassets */; };
 		84F3B8621A772EF60064794E /* SwankTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B8611A772EF60064794E /* SwankTests.m */; };
 		84F3B8821A7730480064794E /* searchResults.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B86D1A7730480064794E /* searchResults.m */; };
-		84F3B8861A7730480064794E /* barcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B8731A7730480064794E /* barcode.png */; };
 		84F3B8871A7730480064794E /* webPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B8741A7730480064794E /* webPage.html */; };
 		84F3B8881A7730480064794E /* Barcode.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B8781A7730480064794E /* Barcode.m */; };
 		84F3B8891A7730480064794E /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B87A1A7730480064794E /* FontAwesome.ttf */; };
 		84F3B88A1A7730480064794E /* NSString+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B87C1A7730480064794E /* NSString+FontAwesome.m */; };
 		84F3B88B1A7730480064794E /* UIFont+FontAwesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B87E1A7730480064794E /* UIFont+FontAwesome.m */; };
-		84F3B89B1A77319F0064794E /* ContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B8941A77319F0064794E /* ContentViewController.m */; };
 		84F3B89C1A77319F0064794E /* FAImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B8961A77319F0064794E /* FAImageView.m */; };
 		84F3B89D1A77319F0064794E /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B8981A77319F0064794E /* PageViewController.m */; };
 		84F3B89E1A77319F0064794E /* ScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F3B89A1A77319F0064794E /* ScannerViewController.m */; };
 		84F3B8A31A77326D0064794E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B89F1A77326D0064794E /* Main.storyboard */; };
-		84F3B8A41A77326D0064794E /* Main4.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B8A11A77326D0064794E /* Main4.storyboard */; };
-		84F3B8A71A7736C40064794E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84F3B8A51A7736C40064794E /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +86,6 @@
 		84F3B8611A772EF60064794E /* SwankTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwankTests.m; sourceTree = "<group>"; };
 		84F3B86C1A7730480064794E /* searchResults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = searchResults.h; sourceTree = "<group>"; };
 		84F3B86D1A7730480064794E /* searchResults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = searchResults.m; sourceTree = "<group>"; };
-		84F3B8731A7730480064794E /* barcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = barcode.png; sourceTree = "<group>"; };
 		84F3B8741A7730480064794E /* webPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = webPage.html; sourceTree = "<group>"; };
 		84F3B8771A7730480064794E /* Barcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Barcode.h; sourceTree = "<group>"; };
 		84F3B8781A7730480064794E /* Barcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Barcode.m; sourceTree = "<group>"; };
@@ -99,8 +94,6 @@
 		84F3B87C1A7730480064794E /* NSString+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FontAwesome.m"; sourceTree = "<group>"; };
 		84F3B87D1A7730480064794E /* UIFont+FontAwesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+FontAwesome.h"; sourceTree = "<group>"; };
 		84F3B87E1A7730480064794E /* UIFont+FontAwesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+FontAwesome.m"; sourceTree = "<group>"; };
-		84F3B8931A77319F0064794E /* ContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentViewController.h; sourceTree = "<group>"; };
-		84F3B8941A77319F0064794E /* ContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContentViewController.m; sourceTree = "<group>"; };
 		84F3B8951A77319F0064794E /* FAImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAImageView.h; sourceTree = "<group>"; };
 		84F3B8961A77319F0064794E /* FAImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAImageView.m; sourceTree = "<group>"; };
 		84F3B8971A77319F0064794E /* PageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageViewController.h; sourceTree = "<group>"; };
@@ -108,8 +101,6 @@
 		84F3B8991A77319F0064794E /* ScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScannerViewController.h; sourceTree = "<group>"; };
 		84F3B89A1A77319F0064794E /* ScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScannerViewController.m; sourceTree = "<group>"; };
 		84F3B8A01A77326D0064794E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		84F3B8A21A77326D0064794E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main4.storyboard; sourceTree = "<group>"; };
-		84F3B8A61A7736C40064794E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AC0DD3887775D40EBE12ED8F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,15 +209,11 @@
 		84F3B8441A772EF60064794E /* Swank */ = {
 			isa = PBXGroup;
 			children = (
-				84F3B8A51A7736C40064794E /* LaunchScreen.xib */,
 				84F3B89F1A77326D0064794E /* Main.storyboard */,
-				84F3B8A11A77326D0064794E /* Main4.storyboard */,
 				84F3B86B1A7730480064794E /* Class */,
 				84F3B86E1A7730480064794E /* Icon */,
 				84F3B8711A7730480064794E /* Resource */,
 				84F3B8751A7730480064794E /* ThirdParty */,
-				84F3B8931A77319F0064794E /* ContentViewController.h */,
-				84F3B8941A77319F0064794E /* ContentViewController.m */,
 				84F3B8951A77319F0064794E /* FAImageView.h */,
 				84F3B8961A77319F0064794E /* FAImageView.m */,
 				84F3B8971A77319F0064794E /* PageViewController.h */,
@@ -291,7 +278,6 @@
 		84F3B8711A7730480064794E /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				84F3B8731A7730480064794E /* barcode.png */,
 				84F3B8741A7730480064794E /* webPage.html */,
 			);
 			path = Resource;
@@ -401,7 +387,7 @@
 				TargetAttributes = {
 					84F3B8411A772EF60064794E = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = 5XU4Y6B8DY;
+						DevelopmentTeam = X6E8S7R9CM;
 					};
 					84F3B85A1A772EF60064794E = {
 						CreatedOnToolsVersion = 6.1;
@@ -433,16 +419,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				84F3B8A41A77326D0064794E /* Main4.storyboard in Resources */,
 				84F3B8A31A77326D0064794E /* Main.storyboard in Resources */,
 				84A336F31A7739280025BB93 /* splash-568h@2x.png in Resources */,
 				84F3B8871A7730480064794E /* webPage.html in Resources */,
 				84A336F61A773D190025BB93 /* splash.png in Resources */,
-				84F3B8861A7730480064794E /* barcode.png in Resources */,
 				84F3B8891A7730480064794E /* FontAwesome.ttf in Resources */,
 				84F3B8531A772EF60064794E /* Images.xcassets in Resources */,
 				84A336F41A7739280025BB93 /* splash@2x.png in Resources */,
-				84F3B8A71A7736C40064794E /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,7 +478,6 @@
 			files = (
 				84F3B84E1A772EF60064794E /* ViewController.m in Sources */,
 				84F3B84B1A772EF60064794E /* AppDelegate.m in Sources */,
-				84F3B89B1A77319F0064794E /* ContentViewController.m in Sources */,
 				84F3B88A1A7730480064794E /* NSString+FontAwesome.m in Sources */,
 				84F3B8881A7730480064794E /* Barcode.m in Sources */,
 				84F3B88B1A7730480064794E /* UIFont+FontAwesome.m in Sources */,
@@ -532,22 +514,6 @@
 				84F3B8A01A77326D0064794E /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		84F3B8A11A77326D0064794E /* Main4.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84F3B8A21A77326D0064794E /* Base */,
-			);
-			name = Main4.storyboard;
-			sourceTree = "<group>";
-		};
-		84F3B8A51A7736C40064794E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				84F3B8A61A7736C40064794E /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -587,7 +553,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -622,7 +588,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -634,16 +600,20 @@
 			baseConfigurationReference = AC0DD3887775D40EBE12ED8F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikita Logachev (J9WT74BSYD)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = Swank/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Swank/ThirdParty/Google",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Swank;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -652,16 +622,20 @@
 			baseConfigurationReference = 210573D4AE9504C91E705D64 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = Swank/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Swank/ThirdParty/Google",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Swank;
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -679,7 +653,7 @@
 				);
 				INFOPLIST_FILE = SwankTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwankTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swank.app/Swank";
 			};
 			name = Debug;
@@ -694,7 +668,7 @@
 				);
 				INFOPLIST_FILE = SwankTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = SwankTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swank.app/Swank";
 			};
 			name = Release;
