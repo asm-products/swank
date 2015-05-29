@@ -2,8 +2,8 @@
 //  AppDelegate.m
 //  PDFView
 //
-//  Created by Admin on 12/2/14.
-//  Copyright (c) 2014 youngjin. All rights reserved.
+//  Created by ??? on 12/2/14.
+//  Copyright (c) 2014 Swank. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -11,6 +11,7 @@
 #import "GAI.h"
 #import "GAIDictionaryBuilder.h"
 #import "GAIFields.h"
+#import <Realm/Realm.h>
 
 @implementation AppDelegate
 
@@ -106,6 +107,23 @@
     // Set up IDFA for install tracking
     id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
     tracker.allowIDFACollection = YES;
+    
+    // This is always set manually. It must be
+    // higher than the previous version (oldSchemaVersion) or an RLMException is thrown
+    [RLMRealm setSchemaVersion:4
+                forRealmAtPath:[RLMRealm defaultRealmPath]
+            withMigrationBlock:^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+            }];
+    
+    // now that we have called `setSchemaVersion:withMigrationBlock:`, opening an outdated
+    // Realm will automatically perform the migration and opening the Realm will succeed
+    [RLMRealm defaultRealm];
     
     // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone4
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

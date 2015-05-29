@@ -2,12 +2,11 @@
 //  PageViewController.h
 //  PDFView
 //
-//  Created by Admin on 03/12/14.
-//  Copyright (c) 2014 youngjin. All rights reserved.
+//  Created by ??? on 03/12/14.
+//  Copyright (c) 2014 Swank. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-//#import "ContentViewController.h"
 #import "searchResults.h"
 #import "ViewController.h"
 #import "GAITrackedViewController.h"
@@ -19,7 +18,14 @@
 @property (strong,nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (strong,nonatomic) NSString  *pageUrl;
 @property (strong,nonatomic) NSMutableArray *pageString;
+
 @property (strong,nonatomic) NSString *sendUrl;
+@property (strong,nonatomic) NSString *query;
+@property (strong,nonatomic) NSString *condition;
+@property (strong,nonatomic) NSString *listingType;
+@property (nonatomic) BOOL exact;
+@property (nonatomic) BOOL cannotBeSaved;
+
 @property (strong,nonatomic)  searchResults *responseResults;
 @property (nonatomic,getter=isMomentary) BOOL momentary;
 @property (nonatomic,strong) IBOutlet UILabel *SwankValue;

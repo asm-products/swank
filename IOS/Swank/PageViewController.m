@@ -2,14 +2,16 @@
 //  PageViewController.m
 //  PDFView
 //
-//  Created by Admin on 03/12/14.
-//  Copyright (c) 2014 youngjin. All rights reserved.
+//  Created by ??? on 03/12/14.
+//  Copyright (c) 2014 Swank. All rights reserved.
 //
 
 #import "PageViewController.h"
 #import "MBProgressHUD.h"
 #import "ViewController.h"
 #import "NSString+FontAwesome.h"
+#import "SearchResult.h"
+
 CGPoint currentPos;
 NSInteger pageNumber;
 NSString *status;
@@ -69,15 +71,48 @@ NSString *status;
     self.SearchResults =[[NSMutableArray alloc ]init];
     [self HttpGetRequestandReceive];
     
-    UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(saveItem:)];
-    list.tintColor = [UIColor whiteColor];
-    [self.navigationItem setRightBarButtonItem:list];
+    if (!self.cannotBeSaved) {
+        UIBarButtonItem *list = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(saveItem:)];
+        list.tintColor = [UIColor whiteColor];
+        [self.navigationItem setRightBarButtonItem:list];
+    }
+    
+    id backfont = [NSString fontAwesomeIconStringForEnum:FAChevronLeft];
+    
+    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:backfont style:UIBarButtonItemStyleBordered target:self action:@selector(leftButtonClicked:)];
+    self.navigationItem.leftBarButtonItem = leftButton;
+    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
+    NSDictionary *sizeLeft = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kFontAwesomeFamilyName size:22.0],NSFontAttributeName, nil];
+    [leftButton setTitleTextAttributes:sizeLeft forState:UIControlStateNormal];
     
 }
 
 - (void)saveItem:(id)sender
 {
+    if (!self.SearchResults.count) return;
+    
+    RLMRealm *realm = [RLMRealm defaultRealm];
+    
+    SearchResult *result = [[SearchResult alloc] init];
+    
+    searchResults *data = [self.SearchResults objectAtIndex:0];
 
+    result.query = self.query;
+    result.condition = self.condition;
+    result.listingType = self.listingType;
+    result.searchDate = [NSDate date];
+    result.swankScore = data._swank;
+    result.turnover = data._turnover_rate;
+    result.averagePrice = data._avg_price;
+    result.exact = self.exact;
+    result.imageUrl = data._imageUrl;
+    
+    [realm beginWriteTransaction];
+    [realm addObject:result];
+    [realm commitWriteTransaction];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Saved" message:@"" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
 }
 
 - (void)orientationChanged:(NSNotification *)notification
@@ -165,22 +200,15 @@ NSString *status;
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    id backfont = [NSString fontAwesomeIconStringForEnum:FAChevronLeft];
-    
-    UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:backfont style:UIBarButtonItemStyleBordered target:self action:@selector(leftButtonClicked:)];
-    self.navigationItem.leftBarButtonItem = leftButton;
-    self.navigationItem.leftBarButtonItem.tintColor = [UIColor whiteColor];
-    NSDictionary *size = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:kFontAwesomeFamilyName size:22.0],NSFontAttributeName, nil];
-    [leftButton setTitleTextAttributes:size forState:UIControlStateNormal];
 }
 
 - (void)leftButtonClicked:(id)sender
 {
-    UIViewController *uivc = self.presentingViewController;
-    while (uivc) {
-        [uivc dismissViewControllerAnimated:NO completion:nil];
-        uivc = uivc.presentingViewController;
+    // Saved searches or straight to search result
+    if (self.navigationController.viewControllers.count > 1) {
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -190,6 +218,9 @@ NSString *status;
     NSString  *contentString = [NSString stringWithContentsOfFile:htmlfilePath encoding:NSUTF8StringEncoding error:nil];
     
     self.pageString = [[NSMutableArray alloc]init];
+    
+    
+    
     for (int i=0;i<self.SearchResults.count;i++)
     {
         self.contentResults = [self.SearchResults objectAtIndex:i];
