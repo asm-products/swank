@@ -74,7 +74,7 @@
     
     if (self.searchBar.text.length > 1)
     {
-        self.results = [[SearchResult objectsWithPredicate:[NSPredicate predicateWithFormat:@"query CONTAINS %@",self.searchBar.text]] sortedResultsUsingProperty:property ascending:ascending];
+        self.results = [[SearchResult objectsWithPredicate:[NSPredicate predicateWithFormat:@"query CONTAINS[c] %@",self.searchBar.text]] sortedResultsUsingProperty:property ascending:ascending];
     } else {
         self.results = [[SearchResult allObjects] sortedResultsUsingProperty:property ascending:ascending];
     }

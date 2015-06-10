@@ -12,4 +12,6 @@
 
 + (NSString*)encodedURLForQuery:(NSString*)query condition:(NSString*)condition listingType:(NSString*)listingType exact:(BOOL)exact;
 
++ (NSString*)encodedURLForBarcodeQuery:(NSString*)query type:(NSString*)barcodeType condition:(NSString*)condition listingType:(NSString*)listingType;
+
 @end

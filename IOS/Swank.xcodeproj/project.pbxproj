@@ -406,7 +406,7 @@
 				TargetAttributes = {
 					84F3B8411A772EF60064794E = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = X6E8S7R9CM;
+						DevelopmentTeam = 857B48UXLM;
 					};
 					84F3B85A1A772EF60064794E = {
 						CreatedOnToolsVersion = 6.1;
@@ -622,7 +622,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Nikita Logachev (J9WT74BSYD)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Isaiah Nwukor (6JP77R5Y38)";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = Swank/Info.plist;
@@ -633,7 +633,7 @@
 					"$(PROJECT_DIR)/Swank/ThirdParty/Google",
 				);
 				PRODUCT_NAME = Swank;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "43d0d51d-5cae-4475-a100-3824ca337c7b";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -644,8 +644,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = NO;
 				INFOPLIST_FILE = Swank/Info.plist;

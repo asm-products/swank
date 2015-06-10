@@ -160,13 +160,11 @@
 - (IBAction)BarcodesearchBtn_Click:(id)sender
 {
     ScannerViewController *scannerView = [self.storyboard instantiateViewControllerWithIdentifier:@"ScannerViewID"];
-    scannerView.Condition = self.Condition;
+    scannerView.Condition = @"1";
+    scannerView.listingType = @"ALL";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:scannerView];
     nav.title = @"Barcode Scanner";
     [self presentViewController:nav animated:YES completion:nil];
-    
-    
-    
 }
 
 - (IBAction)KeywordDeleteClick:(id)sender {

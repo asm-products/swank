@@ -17,5 +17,6 @@
 //@property (strong,nonatomic) ViewController *SearchViewController;
 @property (strong,nonatomic) NSString *barcodeString;
 @property (strong,nonatomic) NSString *barcodeType;
-@property (strong,nonatomic) NSString * Condition;
+@property (strong,nonatomic) NSString *Condition;
+@property (strong,nonatomic) NSString *listingType;
 @end

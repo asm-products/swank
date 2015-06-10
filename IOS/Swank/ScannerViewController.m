@@ -12,6 +12,7 @@
 #import "Barcode.h"
 #import "ViewController.h"
 #import "NSString+FontAwesome.h"
+#import "URLMaker.h"
 
 @interface ScannerViewController ()
 
@@ -224,12 +225,13 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
              // 4
              Barcode * barcode = [Barcode processMetadataObject:code];
              
-             for(NSString * str in self.allowedBarcodeTypes){
-                if([barcode.getBarcodeType isEqualToString:str]){
-                    [self validBarcodeFound:barcode];
-                    return;
-                }
-            }
+//             for(NSString * str in self.allowedBarcodeTypes){
+//                if([barcode.getBarcodeType isEqualToString:str]){
+//                    [self validBarcodeFound:barcode];
+//                    return;
+//                }
+//            }
+              [self validBarcodeFound:barcode];
          }
      }];
 }
@@ -269,9 +271,9 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 }
 -(void) searchWithBarcode
 {
-       NSString *Sendurl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",@"http://stoplisting.com/api/?swank&user_id=0&",@"query=",self.barcodeString,@"&condition=",self.Condition,@"&barcodetype=",self.barcodeType];
+    NSString *Sendurl = [URLMaker encodedURLForBarcodeQuery:self.barcodeString type:self.barcodeType condition:self.Condition listingType:self.listingType];
 #ifdef DEBUG
-    NSLog(@"%@",Sendurl);
+    NSLog(@"SENDURL: %@",Sendurl);
 #endif
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
     pageView.sendUrl = Sendurl;
