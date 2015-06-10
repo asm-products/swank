@@ -2,8 +2,8 @@
 //  searchResults.h
 //  PDFView
 //
-//  Created by Admin on 03/12/14.
-//  Copyright (c) 2014 youngjin. All rights reserved.
+//  Created by ??? on 03/12/14.
+//  Copyright (c) 2014 Swank. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

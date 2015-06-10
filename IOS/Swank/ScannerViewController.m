@@ -12,7 +12,7 @@
 #import "Barcode.h"
 #import "ViewController.h"
 #import "NSString+FontAwesome.h"
-@import AVFoundation;   // iOS7 only import style
+#import "URLMaker.h"
 
 @interface ScannerViewController ()
 
@@ -47,6 +47,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.screenName = @"Scanner Screen";
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     
     [self setupCaptureSession];
     _previewLayer.frame = _previewView.bounds;
@@ -90,6 +94,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
+    
     id backfont = [NSString fontAwesomeIconStringForEnum:FAChevronLeft];
     
     
@@ -108,8 +114,6 @@
         [uivc dismissViewControllerAnimated:NO completion:nil];
         uivc = uivc.presentingViewController;
     }
-    
-    //[self dismissViewControllerAnimated:YES completion:^{ }];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -137,7 +141,9 @@
     _videoDevice = [AVCaptureDevice
                     defaultDeviceWithMediaType:AVMediaTypeVideo];
     if (!_videoDevice) {
+#ifdef DEBUG
         NSLog(@"No video camera on this device!");
+#endif
         return;
     }
     // 3
@@ -190,15 +196,11 @@
 
 #pragma mark - Button action functions
 - (IBAction)settingsButtonPressed:(id)sender {
-   // [self performSegueWithIdentifier:@"toSettings" sender:self];
+
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //if ([[segue identifier] isEqualToString:@"toSettings"]) {
-   //     self.settingsVC = (SettingsViewController *)[self.storyboard instantiateViewControllerWithIdentifier: @"SettingsViewController"];
-     //   self.settingsVC = segue.destinationViewController;
-     //   self.settingsVC.delegate = self;
-   // }
+
 }
 
 
@@ -223,12 +225,13 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
              // 4
              Barcode * barcode = [Barcode processMetadataObject:code];
              
-             for(NSString * str in self.allowedBarcodeTypes){
-                if([barcode.getBarcodeType isEqualToString:str]){
-                    [self validBarcodeFound:barcode];
-                    return;
-                }
-            }
+//             for(NSString * str in self.allowedBarcodeTypes){
+//                if([barcode.getBarcodeType isEqualToString:str]){
+//                    [self validBarcodeFound:barcode];
+//                    return;
+//                }
+//            }
+              [self validBarcodeFound:barcode];
          }
      }];
 }
@@ -268,8 +271,10 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
 }
 -(void) searchWithBarcode
 {
-       NSString *Sendurl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",@"http://stoplisting.com/api/?swank&user_id=0&",@"query=",self.barcodeString,@"&condition=",self.Condition,@"&barcodetype=",self.barcodeType];
-    NSLog(@"%@",Sendurl);
+    NSString *Sendurl = [URLMaker encodedURLForBarcodeQuery:self.barcodeString type:self.barcodeType condition:self.Condition listingType:self.listingType];
+#ifdef DEBUG
+    NSLog(@"SENDURL: %@",Sendurl);
+#endif
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
     pageView.sendUrl = Sendurl;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pageView];
@@ -277,9 +282,11 @@ didOutputMetadataObjects:(NSArray *)metadataObjects
     [self presentViewController:nav animated:YES completion:nil];
 }
 - (void) settingsChanged:(NSMutableArray *)allowedTypes{
+#ifdef DEBUG
     for(NSObject * obj in allowedTypes){
         NSLog(@"%@",obj);
     }
+#endif
     if(allowedTypes){
         self.allowedBarcodeTypes = [NSMutableArray arrayWithArray:allowedTypes];
     }

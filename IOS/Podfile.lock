@@ -1,0 +1,20 @@
+PODS:
+  - MBProgressHUD (0.9.1)
+  - Realm (0.93.0):
+    - Realm/Headers (= 0.93.0)
+  - Realm/Headers (0.93.0)
+  - SDWebImage (3.7.2):
+    - SDWebImage/Core (= 3.7.2)
+  - SDWebImage/Core (3.7.2)
+
+DEPENDENCIES:
+  - MBProgressHUD (~> 0.9.1)
+  - Realm (~> 0.93.0)
+  - SDWebImage (~> 3.7.2)
+
+SPEC CHECKSUMS:
+  MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Realm: b29e8bc1534656723fa3465a3687aade1dbd1e4b
+  SDWebImage: 71b7cdc1d1721d6a82ed62889030225f2c249e29
+
+COCOAPODS: 0.35.0

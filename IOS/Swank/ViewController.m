@@ -2,28 +2,30 @@
 //  ViewController.m
 //  Swank
 //
-//  Created by admin on 1/27/15.
-//  Copyright (c) 2015 admin. All rights reserved.
+//  Created by ??? on 1/27/15.
+//  Copyright (c) 2015 Swank. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "NSString+FontAwesome.h"
-#import "searchResults.h"
-
-@interface ViewController ()<MBProgressHUDDelegate>
-{
-    MBProgressHUD *buyHUD;
-}
-@end
+#import "SearchResultsViewController.h"
+#import "URLMaker.h"
 
 @implementation ViewController
+
 -(void) viewWillAppear:(BOOL)animated
 {
-    
+    [super viewWillAppear:animated];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.screenName = @"Menu Screen";
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    
     _KeywordText.text = @"Search";
     _KeywordText.textColor = [UIColor lightGrayColor];
     
@@ -98,33 +100,6 @@
                                            forState:UIControlStateNormal];
     
     
-    /* NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.ConditionSetting
-     attribute:NSLayoutAttributeHeight
-     relatedBy:NSLayoutRelationEqual
-     toItem:nil
-     attribute:NSLayoutAttributeNotAnAttribute
-     multiplier:1
-     constant:40];
-     [self.ConditionSetting addConstraint:constraint];
-     
-     NSLayoutConstraint *Listingconstraint = [NSLayoutConstraint constraintWithItem:self.ListingTypeSetting
-     attribute:NSLayoutAttributeHeight
-     relatedBy:NSLayoutRelationEqual
-     toItem:nil
-     attribute:NSLayoutAttributeNotAnAttribute
-     multiplier:1
-     constant:40];
-     [self.ListingTypeSetting addConstraint:Listingconstraint];
-     self.ConditionSetting.layer.borderWidth = 3.0;
-     self.ConditionSetting.layer.borderColor = [UIColor colorWithRed:0.0 green:120.0/255.f blue:0.0 alpha:1.0].CGColor;
-     [self.ConditionSetting.layer setCornerRadius:12.0f];
-     self.ConditionSetting.layer.masksToBounds =YES;
-     
-     self.ListingTypeSetting.layer.borderWidth = 3.0;
-     self.ListingTypeSetting.layer.borderColor = [UIColor colorWithRed:0.0 green:120.0/255.f blue:0.0 alpha:1.0].CGColor;
-     [self.ListingTypeSetting.layer setCornerRadius:12.0f];
-     self.ListingTypeSetting.layer.masksToBounds =YES;
-     */
     ///
     //Navigation Bar font
     ///
@@ -132,88 +107,64 @@
     self.navigationController.navigationBar.titleTextAttributes = size;
     [self.navigationItem setTitle:@"Swank Search"];
     self.navigationController.navigationBar.barTintColor=[UIColor colorWithRed:96.0/255.0f green:144.0/255.0f blue:1.0/255.0f alpha:1.0];
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     [self.navigationController.navigationBar setTranslucent:NO];
     self.ListingTypeSetting.selectedSegmentIndex=1;
     self.ConditionSetting.selectedSegmentIndex=0;
     self.Condition=@"3000";
     self.ListingType=@"BIN";
-    self.SendUrl=@"";
-    self.StopListingUrl=@"http://stoplisting.com/api/?swank&user_id=0&";
-    self.responseResults= [[searchResults alloc]init];
-    self.SearchResults =[[NSMutableArray alloc ]init];
+
 }
 
-- (void)didReceiveMemoryWarning
+- (IBAction)showList:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    SearchResultsViewController *searches = [self.storyboard instantiateViewControllerWithIdentifier:@"searchView"];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:searches];
+    [self presentViewController:nav animated:YES completion:nil];
 }
-- (IBAction)ExtractSearchClick:(id)sender
+
+- (void)performSearch:(BOOL)exact
 {
     if ([self.KeywordText.text  isEqualToString:@""] || [self.KeywordText.text isEqualToString:@"Search"])
     {
         return;
     }
-    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                                    NULL,
-                                                                                                    (__bridge CFStringRef) self.KeywordText.text ,
-                                                                                                    NULL,
-                                                                                                    (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                                    kCFStringEncodingUTF8 ));
-    self.SendUrl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.StopListingUrl,@"query=@",encodedString,@"&condition=",self.Condition,@"&listingtype=",self.ListingType];
-    NSLog(@"%@",self.SendUrl);
-    if (self.SearchResults.count>0)
-        [ self.SearchResults  removeAllObjects];
+    
+    NSString *url = [URLMaker encodedURLForQuery:self.KeywordText.text condition:self.Condition listingType:self.ListingType exact:exact];
+    
+#ifdef DEBUG
+    NSLog(@"%@",url);
+#endif
+    
     PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
-    pageView.sendUrl = self.SendUrl;
+    pageView.sendUrl = url;
+    pageView.query = self.KeywordText.text;
+    pageView.condition = self.Condition;
+    pageView.listingType = self.ListingType;
+    pageView.exact = exact;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pageView];
-    nav.title = @"Swank Search Result";
     [self presentViewController:nav animated:YES completion:nil];
-    
-    
-    
+}
+
+- (IBAction)ExtractSearchClick:(id)sender
+{
+    [self performSearch:YES];
 }
 
 - (IBAction)normalClick:(id)sender
 {
-    if ([self.KeywordText.text  isEqualToString:@""] || [self.KeywordText.text isEqualToString:@"Search"])
-    {
-        return;
-    }
-    NSString *encodedString = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-                                                                                                    NULL,
-                                                                                                    (__bridge CFStringRef) self.KeywordText.text ,
-                                                                                                    NULL,
-                                                                                                    (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-                                                                                                    kCFStringEncodingUTF8 ));
-    
-    self.SendUrl=[NSString stringWithFormat:@"%@%@%@%@%@%@%@",self.StopListingUrl,@"query=",encodedString,@"&condition=",self.Condition,@"&listingtype=",self.ListingType];
-    NSLog(@"%@",self.SendUrl);
-    if (self.SearchResults.count>0)
-        [ self.SearchResults  removeAllObjects];
-    
-    PageViewController *pageView = [self.storyboard instantiateViewControllerWithIdentifier:@"pageView"];
-    pageView.sendUrl = self.SendUrl;
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:pageView];
-    nav.title = @"Swank Search Result";
-    [self presentViewController:nav animated:YES completion:nil];
-    
-    
+    [self performSearch:NO];
 }
 - (IBAction)BarcodesearchBtn_Click:(id)sender
 {
-    if (self.SearchResults.count>0)
-        [ self.SearchResults  removeAllObjects];
     ScannerViewController *scannerView = [self.storyboard instantiateViewControllerWithIdentifier:@"ScannerViewID"];
-    scannerView.Condition = self.Condition;
+    scannerView.Condition = @"1";
+    scannerView.listingType = @"ALL";
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:scannerView];
     nav.title = @"Barcode Scanner";
     [self presentViewController:nav animated:YES completion:nil];
-    
-    
-    
 }
 
 - (IBAction)KeywordDeleteClick:(id)sender {
@@ -255,13 +206,7 @@
     }
     
 }
--(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    // [self.searchText becomeFirstResponder];
-    [self.searchText resignFirstResponder];
-    [self.view endEditing:YES];
-    
-}
+
 -(BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     //[textField becomeFirstResponder];
@@ -269,17 +214,7 @@
     //
     return YES;
 }
-- (IBAction)SearchText:(id)sender {
-}
-- (void)removeWithGradient
-{
-    if(buyHUD!=nil)
-    {
-        [buyHUD hide:YES];
-        [buyHUD removeFromSuperview];
-    }
-    
-}
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
@@ -303,6 +238,14 @@
     {
         _TrashBtn.hidden = NO;
     }
+}
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        _TrashBtn.hidden = YES;
+        return NO;
+    }
+    return YES;
 }
 -(float)getColorValue:(float)colorVal
 {

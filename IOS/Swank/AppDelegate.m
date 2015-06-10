@@ -2,18 +2,144 @@
 //  AppDelegate.m
 //  PDFView
 //
-//  Created by Admin on 12/2/14.
-//  Copyright (c) 2014 youngjin. All rights reserved.
+//  Created by ??? on 12/2/14.
+//  Copyright (c) 2014 Swank. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "GAI.h"
+#import "GAIDictionaryBuilder.h"
+#import "GAIFields.h"
+#import <Realm/Realm.h>
+
 @implementation AppDelegate
+
+
+- (NSUInteger) application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        // iPad
+        return UIInterfaceOrientationMaskAll;
+    } else {
+        // iPhone / iPod Touch
+        return UIInterfaceOrientationMaskPortrait;
+    }
+    
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    
+    NSString *urlString = [url absoluteString];
+    
+    id<GAITracker> tracker = [[GAI sharedInstance] trackerWithTrackingId:@"UA-43102431-3"];
+    
+    // setCampaignParametersFromUrl: parses Google Analytics campaign ("UTM")
+    // parameters from a string url into a Map that can be set on a Tracker.
+    GAIDictionaryBuilder *hitParams = [[GAIDictionaryBuilder alloc] init];
+    
+    // Set campaign data on the map, not the tracker directly because it only
+    // needs to be sent once.
+    [[hitParams setCampaignParametersFromUrl:urlString] build];
+    
+    // Campaign source is the only required campaign field. If previous call
+    // did not set a campaign source, use the hostname as a referrer instead.
+    if(![hitParams valueForKey:kGAICampaignSource] && [url host].length !=0) {
+        // Set campaign data on the map, not the tracker.
+        [hitParams set:@"referrer" forKey:kGAICampaignMedium];
+        [hitParams set:[url host] forKey:kGAICampaignSource];
+    }
+    
+    NSDictionary *hitParamsDict = [hitParams build];
+    
+    // A screen name is required for a screen view.
+    [tracker set:kGAIScreenName value:@"Menu Screen"];
+    
+    // Previous V3 SDK versions.
+    // [tracker send:[[[GAIDictionaryBuilder createAppView] setAll:hitParamsDict] build]];
+    
+    // SDK Version 3.08 and up.
+    [tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:hitParamsDict] build]];
+    
+//    Alternatively, if you have campaign information in a form other than Google Analytics campaign parameters, you may set it on a NSDictionary and send it manually:
+//        
+//        // Assumes at least one tracker has already been initialized.
+//        id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+//    
+//    // Note that it's not necessary to set kGAICampaignKeyword for this email campaign.
+//    NSMutableDictionary *campaignData = [NSDictionary alloc dictionaryWithObjectsAndKeys:
+//                                         @"email", kGAICampaignSource,
+//                                         @"email_marketing", kGAICampaignMedium,
+//                                         @"summer_campaign", kGAICampaignName,
+//                                         @"email_variation1", kGAICampaignContent, nil];
+//    
+//    // A screen name is required for a screen view.
+//    [tracker set:kGAIScreenName value:@"screen name"];
+//    
+//    // Note that the campaign data is set on the Dictionary, not the tracker.
+//    // Previous V3 SDK versions.
+//    // [tracker send:[[[GAIDictionaryBuilder createAppView] setAll:campaignData] build]];
+//    
+//    // SDK Version 3.08 and up.
+//    [tracker send:[[[GAIDictionaryBuilder createScreenView] setAll:campaignData] build]];
+    return true;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
-    [self initializeStoryBoardBasedOnScreenSize];
+    // [[GAI sharedInstance] setDryRun:YES];
+    
+    // Optional: automatically send uncaught exceptions to Google Analytics.
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    
+    // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+    [GAI sharedInstance].dispatchInterval = 20;
+    
+    // Optional: set Logger to VERBOSE for debug information.
+#ifdef DEBUG
+    [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+#endif
+    
+    // Initialize tracker. Replace with your tracking ID.
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-43102431-3"];
+    
+    // Set up IDFA for install tracking
+    id<GAITracker> tracker = [[GAI sharedInstance] defaultTracker];
+    tracker.allowIDFACollection = YES;
+    
+    // This is always set manually. It must be
+    // higher than the previous version (oldSchemaVersion) or an RLMException is thrown
+    [RLMRealm setSchemaVersion:4
+                forRealmAtPath:[RLMRealm defaultRealmPath]
+            withMigrationBlock:^(RLMMigration *migration, uint64_t oldSchemaVersion) {
+                // We haven’t migrated anything yet, so oldSchemaVersion == 0
+                if (oldSchemaVersion < 1) {
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                }
+            }];
+    
+    // now that we have called `setSchemaVersion:withMigrationBlock:`, opening an outdated
+    // Realm will automatically perform the migration and opening the Realm will succeed
+    [RLMRealm defaultRealm];
+    
+    // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone4
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
+    // Instantiate the initial view controller object from the storyboard
+    //LoginViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
+    ViewController *splashView = (ViewController*)[storyboard instantiateViewControllerWithIdentifier:@"parentView"];
+    
+    // Instantiate a UIWindow object and initialize it with the screen size of the iOS device
+    //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    // Set the initial view controller to be the root view controller of the window object
+    self.window.rootViewController  = splashView;
+    
+    // Set the window object to be the key window and show it
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
@@ -42,63 +168,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
--(void)initializeStoryBoardBasedOnScreenSize {
-    
-    if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPhone)
-    {    // The iOS device = iPhone or iPod Touch
-        
-        
-        CGSize iOSDeviceScreenSize = [[UIScreen mainScreen] bounds].size;
-        
-        if ([UIScreen mainScreen].scale == 2.f && [UIScreen mainScreen].bounds.size.height == 568.0f) {
-            // iPhone 5 and iPod Touch 5th generation: 4 inch screen (diagonally measured)
-            
-            // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone4
-            UIStoryboard *iPhone4Storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            
-            // Instantiate the initial view controller object from the storyboard
-            //LoginViewController *initialViewController = [iPhone4Storyboard instantiateInitialViewController];
-            ViewController *splashView = (ViewController*)[iPhone4Storyboard instantiateViewControllerWithIdentifier:@"parentView"];
-            
-            // Instantiate a UIWindow object and initialize it with the screen size of the iOS device
-            //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            
-            // Set the initial view controller to be the root view controller of the window object
-            self.window.rootViewController  = splashView;
-            
-            // Set the window object to be the key window and show it
-            [self.window makeKeyAndVisible];
-        } else if (iOSDeviceScreenSize.height == 480) {
-            // iPhone 3GS, 4, and 4S and iPod Touch 3rd and 4th generation: 3.5 inch screen (diagonally measured)
-            
-            // Instantiate a new storyboard object using the storyboard file named Storyboard_iPhone35
-            UIStoryboard *iPhone35Storyboard = [UIStoryboard storyboardWithName:@"Main4" bundle:nil];
-            
-            // Instantiate the initial view controller object from the storyboard
-            //LoginViewController *initialViewController = [iPhone35Storyboard instantiateInitialViewController];
-            ViewController *splashView = (ViewController*)[iPhone35Storyboard instantiateViewControllerWithIdentifier:@"parentView"];
-            
-            // Instantiate a UIWindow object and initialize it with the screen size of the iOS device
-            //self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-            
-            // Set the initial view controller to be the root view controller of the window object
-            self.window.rootViewController  = splashView;
-            
-            // Set the window object to be the key window and show it
-            
-            [self.window makeKeyAndVisible];
-        }
-        
-    } else if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad)
-        
-    {   // The iOS device = iPad
-        
-        UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
-        UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
-        splitViewController.delegate = (id)navigationController.topViewController;
-        
-    }
 }
 
 @end
